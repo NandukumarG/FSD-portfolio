@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Tech Portfolio</title>
+    <style>
+        /* Base styles from your original CSS */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Variables */
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --accent-hover: #64dfdf;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --dark-bg: #0f0e17;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --gradient-start: #4361ee;
+            --gradient-end: #4cc9f0;
+
+            /* Typography */
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Roboto', sans-serif;
+
+            /* Spacing */
+            --section-spacing: 6rem;
+            --element-spacing: 2rem;
+
+            /* Animation Speeds */
+            --animation-slow: 1.5s;
+            --animation-medium: 0.8s;
+            --animation-fast: 0.4s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor for custom cursor */
+        }
+
+        /* Enhanced Cursor Animation */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.3s;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(67, 97, 238, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        a:hover ~ .cursor-dot,
+        button:hover ~ .cursor-dot,
+        .clickable:hover ~ .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+        }
+
+        a:hover ~ .cursor-outline,
+        button:hover ~ .cursor-outline,
+        .clickable:hover ~ .cursor-outline {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(67, 97, 238, 0.1);
+            border-color: var(--accent-color);
+            border-width: 1px;
+        }
+
+        /* Hero Section Background Animation */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ff 100%);
+            padding: 8rem 0 6rem;
+            overflow: hidden;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(67, 97, 238, 0.15);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0;
+        }
+
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            left: 60%;
+            animation-delay: 5s;
+            animation-duration: 30s;
+        }
+
+        .particle:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            top: 80%;
+            left: 30%;
+            animation-delay: 7s;
+            animation-duration: 22s;
+        }
+
+        .particle:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 85%;
+            animation-delay: 9s;
+            animation-duration: 28s;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                rgba(76, 201, 240, 0.1) 0%,
+                rgba(67, 97, 238, 0.1) 50%,
+                rgba(63, 55, 201, 0.1) 100%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Rest of your existing styles... */
+        /* This is just a basic setup - make sure to include the rest of your CSS */
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Swiper JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body>
+<!-- Cursor Animation -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<!-- Background Animation -->
+<div class="area">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<!-- Navigation -->
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">Nanda Kumar G</a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="https://drive.google.com/file/d/1Y4vUVqOAWnQSqDSYTWDk-_7zy3Xq2nD6/view?usp=sharing" target="_blank" class="resume-btn">View Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section with Enhanced Background Animation -->
+<section id="home" class="hero-section">
+    <!-- Gradient Background Animation -->
+    <div class="gradient-bg"></div>
+
+    <!-- Floating Particles -->
+    <div class="hero-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="animate-fade-in">Hello, I'm <br><span class="highlight">Nanda Kumar G</span></h1>
+            <p class="hero-text animate-fade-in-delay-1">A passionate <span class="typing-text">Full Stack Java Developer</span><br> looking for exciting opportunities to kickstart my career.</p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="#projects" class="primary-btn">View Projects</a>
+                <a href="#contact" class="secondary-btn">Contact Me</a>
+            </div>
+            <div class="social-icons animate-fade-in-delay-3">
+                <a href="https://github.com/NandukumarG" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nanda-kumar-7220972b5" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nandakumar22197@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-frame">
+                <img src="Profile%20-%20Copy.jpg" alt="Nanda Kumar G - Professional Photo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">About Me</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="about-container">
+            <div class="about-image animate-on-scroll">
+                <img src="aboutimg.png" alt="About Me Image">
+                <div class="floating-shape shape1"></div>
+                <div class="floating-shape shape2"></div>
+            </div>
+            <div class="about-content">
+                <p class="animate-on-scroll">I'm a passionate Full Stack Java Developer fresher with a strong foundation in both frontend and backend development. I love creating seamless, user-friendly web applications that not only perform well but also offer a great experience.</p>
+
+                <p class="animate-on-scroll">My frontend skills include HTML, CSS, JavaScript, and React, while on the backend, I specialize in Java, Spring Boot, and building RESTful APIs. I also have experience working with databases like MySQL and PostgreSQL through my academic projects.</p>
+
+                <p class="animate-on-scroll">With a keen eye for UX design, I focus on crafting intuitive interfaces through wireframing and user-centered design. As a recent graduate, I'm eager to learn and grow, thriving on solving complex problems and building scalable solutions that make a real impact.</p>
+
+                <div class="about-highlights">
+                    <div class="highlight-item animate-on-scroll">
+                        <span class="highlight-number">2+</span>
+                        <span class="highlight-text">Projects</span>
+                    </div>
+                    <div class="highlight-item animate-on-scroll">
+                        <span class="highlight-number">5+</span>
+                        <span class="highlight-text">Technologies</span>
+                    </div>
+                    <div class="highlight-item animate-on-scroll">
+                        <span class="highlight-number">8+</span>
+                        <span class="highlight-text">Certifications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">My Skills</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="skills-grid">
+            <div class="skill-card animate-on-scroll" data-skill="Java">
+                <div class="skill-icon">
+                    <img src="java.png" alt="Java">
+                </div>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="React">
+                <div class="skill-icon">
+                    <img src="React.webp" alt="React">
+                </div>
+                <h3>React</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="Spring">
+                <div class="skill-icon">
+                    <img src="spring.png" alt="Spring">
+                </div>
+                <h3>Spring</h3>
+            </div>
+
+            <div class="skill-card animate-on-scroll" data-skill="JavaScript">
+                <div class="skill-icon">
+                    <img src="js.webp" alt="JavaScript">
+                </div>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="MySQL">
+                <div class="skill-icon">
+                    <img src="mysql.webp" alt="MySQL">
+                </div>
+                <h3>MySQL</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="MySQL">
+                <div class="skill-icon">
+                    <img src="postsql.webp" alt="MySQL">
+                </div>
+                <h3>PostgresSQL</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="UI/UX">
+                <div class="skill-icon">
+                    <img src="uiux.png" alt="UI/UX">
+                </div>
+                <h3>UI/UX</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="HTML">
+                <div class="skill-icon">
+                    <img src="html.webp" alt="HTML">
+                </div>
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="CSS">
+                <div class="skill-icon">
+                    <img src="css.webp" alt="CSS">
+                </div>
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="Bootstrap">
+                <div class="skill-icon">
+                    <img src="boot.png" alt="Bootstrap">
+                </div>
+                <h3>Bootstrap</h3>
+            </div>
+            <div class="skill-card animate-on-scroll" data-skill="Bootstrap">
+                <div class="skill-icon">
+                    <img src="git.png" alt="Bootstrap">
+                </div>
+                <h3>Git</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tools Section -->
+<section id="tools" class="tools-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Tools I Use</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="intellij.png" alt="IntelliJ">
+                </div>
+                <h3>IntelliJ</h3>
+            </div>
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="vscode.png" alt="VS Code">
+                </div>
+                <h3>VS Code</h3>
+            </div>
+
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="figma.png" alt="Figma">
+                </div>
+                <h3>Figma</h3>
+            </div>
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="github.webp" alt="GitHub">
+                </div>
+                <h3>GitHub</h3>
+            </div>
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="sqlwb.png" alt="SQL Workbench">
+                </div>
+                <h3>SQL Workbench</h3>
+            </div>
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="postsql.webp" alt="SQL Workbench">
+                </div>
+                <h3>pgAdmin 4</h3>
+            </div>
+            <div class="tool-card animate-on-scroll">
+                <div class="tool-icon">
+                    <img src="postman.webp" alt="SQL Workbench">
+                </div>
+                <h3>Postman</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Section -->
+<section id="certificates" class="certificates-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">My Certifications</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="swiper certificate-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="learnjava.png" alt="Java Certification">
+                        <div class="certificate-overlay">
+                            <h3>Java Certification</h3>
+                            <p>Completed comprehensive Java programming course from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1cyDebSkRYifnvawU-nnfCcWeF8O-O3vW/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="learnHTML.png" alt="HTML Certification">
+                        <div class="certificate-overlay">
+                            <h3>HTML Certification</h3>
+                            <p>Mastered HTML5 development and best practices from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1h2HUPE3SdkgPl7n0ex-jCUTT9SL2M8Ye/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="Learn%20CSS.jpg" alt="CSS Certification">
+                        <div class="certificate-overlay">
+                            <h3>CSS Certification</h3>
+                            <p>Advanced styling and responsive design techniques from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1BGdcCCryeTVchmngWzGcS-W0HlZrJ0jz/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="javascript.jpg" alt="JavaScript Certification">
+                        <div class="certificate-overlay">
+                            <h3>JavaScript Foundations</h3>
+                            <p>Mastered modern JavaScript ES6+ features from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1UkvDSRJJLChG1WpgfgWJbdroqW_ZzQz6/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="Learn%20SQL.jpg" alt="sql Certification">
+                        <div class="certificate-overlay">
+                            <h3>SQL</h3>
+                            <p>Completed comprehensive SQL course from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1vgDv5ZYIEJAlqRcEbCu6PkTvXq1_3839/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="Spring_page-0001.jpg" alt="Spring Boot Certification">
+                        <div class="certificate-overlay">
+                            <h3>Spring Boot Essentials</h3>
+                            <p>Mastered Spring Boot microservices development from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/13bzgv75lAiwOTvc1Ffw6mGc3eUF-m17b/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="Git%20and%20Github.jpg" alt="git Certification">
+                        <div class="certificate-overlay">
+                            <h3>Git & Github</h3>
+                            <p>Completed comprehensive Git & Github course from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1alOOtRTjVuaQXdW1Tfv8x8cox7IlQi4x/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="React_page-0001.jpg" alt="React Certification">
+                        <div class="certificate-overlay">
+                            <h3>React Development</h3>
+                            <p>Completed comprehensive React development course from Udemy</p>
+                            <a href="https://drive.google.com/file/d/1-yhJvBwPw9EoesW7BvxIvOHrWlN7Fwqo/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card">
+                        <img src="Learn%20bootstrap.jpg" alt="Bootstrap Certification">
+                        <div class="certificate-overlay">
+                            <h3>Bootstrap</h3>
+                            <p>Completed comprehensive Bootstrap from Codecademy</p>
+                            <a href="https://drive.google.com/file/d/1MLhRFMUcJweKRnldFXjEOcSKiG6fQSUH/view?usp=sharing" class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Projects</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="projects-grid">
+            <div class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="laundryproj.png" alt="Bachelor's Dhobi Project">
+                </div>
+                <div class="project-content">
+                    <h3>Bachelor's Dhobi</h3>
+                    <p>A laundry slot booking website lets users easily book washing slots online. Built with React (smooth UI), Spring Boot (backend logic), SQL (data storage), and RESTful APIs (seamless connection).</p>
+                    <div class="project-tech">
+                        <span>React</span>
+                        <span>Spring Boot</span>
+                        <span>SQL</span>
+                        <span>RESTful API</span>
+                    </div>
+<!--                    <div class="project-links">-->
+<!--                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>-->
+<!--                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+            <div class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="myntraproj.png" alt="Myntra Clone">
+                </div>
+                <div class="project-content">
+                    <h3>Myntra Clone (E-Commerce Frontend)</h3>
+                    <p>Developed a responsive static e-commerce UI using React.js and CSS. Implemented product listings for an enhanced shopping experience.</p>
+                    <div class="project-tech">
+                        <span>React.js</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Responsive Design</span>
+                    </div>
+<!--                    <div class="project-links">-->
+<!--                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>-->
+<!--                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+        <div class="section-underline animate-on-scroll"></div>
+
+        <div class="contact-container">
+            <div class="contact-card animate-on-scroll">
+                <h3>Contact Information</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <p>Nanda Kumar G</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p><a href="tel:+917795711896">+91 7795711896</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:nandakumar22197@gmail.com">nandakumar22197@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <p><a href="https://github.com/NandukumarG" target="_blank">github.com/NandukumarG</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <p><a href="https://www.linkedin.com/in/nanda-kumar-7220972b5" target="_blank">LinkedIn Profile</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-image animate-on-scroll">
+                <img src="Contact_Hero.jpg" alt="Contact" class="contact-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <p>&copy; 2025 Nanda Kumar G. All Rights Reserved.</p>
+            <div class="footer-social">
+                <a href="https://github.com/NandukumarG" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nanda-kumar-7220972b5" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nandakumar22197@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    // Cursor Animation
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    window.addEventListener('mousemove', function(e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: 'forwards' });
+    });
+
+    // Typing animation
+    function typeAnimation() {
+        const textElement = document.querySelector('.typing-text');
+        const text = textElement.textContent;
+        const roles = ['Full Stack Java Developer', 'Frontend Developer', 'Backend Developer', 'UI/UX Enthusiast'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+
+            if (isDeleting) {
+                textElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                textElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                isDeleting = true;
+                typeSpeed = 1500; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        type();
+    }
+
+    // Animation on scroll
+    function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Initialize Swiper with enhanced animation
+    const certificateSwiper = new Swiper('.certificate-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true,
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Add active class to nav items on scroll
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Initialize animations
+    window.addEventListener('load', function() {
+        typeAnimation();
+        animateOnScroll();
+    });
+</script>
+</body>
+</html>
