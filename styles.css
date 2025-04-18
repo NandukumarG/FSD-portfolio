@@ -722,6 +722,23 @@ img {
     font-size: 1.2rem;
 }
 
+<style>
+  #certificate a:hover img {
+    transform: scale(1.03);
+  }
+
+  #certificate a:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 600px) {
+    #certificate h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+
 /* ===== Certificates Section ===== */
 .certificates-section {
     padding: var(--section-spacing) 0;
